@@ -9,34 +9,110 @@
 
     <EditText
         android:id="@+id/textTotal"
-        android:layout_width="100dp"
+        android:layout_width="133dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="82dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="42dp"
         android:ems="10"
         android:hint="Check Total"
-        android:inputType="number"
+        android:inputType="number|numberSigned|numberDecimal"
         android:textAlignment="textStart"
-        android:textSize="16sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewPricePerPerson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textTotal"
-        android:layout_marginTop="184dp"
-        android:text="Tip:" />
+        android:layout_alignStart="@+id/textViewPricePerPerson2"
+        android:layout_marginTop="122dp"
+        android:text="Price/Person:"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewPricePerPerson2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textTotal"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:text="$"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textViewPricePerPerson"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="175dp"
+        android:text="Tip:"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/textTip"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView"
-        android:layout_toEndOf="@+id/textView"
+        android:layout_alignBaseline="@+id/textViewTip"
+        android:layout_toEndOf="@+id/textViewPricePerPerson"
         android:ems="10"
         android:inputType="number"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/textPricePerson"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewPricePerPerson"
+        android:layout_alignEnd="@+id/textTotal"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <NumberPicker
+        android:id="@+id/pickerPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textTotal"
+        android:layout_marginEnd="120dp"></NumberPicker>
+
+    <NumberPicker
+        android:id="@+id/pickerPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textViewPeople2"
+        android:layout_alignTop="@+id/textTotal"></NumberPicker>
+
+    <TextView
+        android:id="@+id/textViewPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textTotal"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="-42dp"
+        android:layout_marginEnd="128dp"
+        android:text="People"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewPeople2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textTotal"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="-42dp"
+        android:layout_marginEnd="30dp"
+        android:text="Percent"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 </RelativeLayout>
