@@ -14,8 +14,9 @@ import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
 
-    var people = 0
-    var percent = 0.0
+    var people = 1
+    var percent = 15.0
+    var totalBill = 0
     lateinit var check: String
 
     lateinit var format: DecimalFormat
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         var textTotal = findViewById<EditText>(R.id.textTotal)
         var textTip = findViewById<EditText>(R.id.textTip)
         var textPerPerson = findViewById<EditText>(R.id.textPricePerson)
+        var textTotalBill = findViewById<EditText>(R.id.textTotalBill)
 
         pickerPeople = findViewById<NumberPicker>(R.id.pickerPeople)
         pickerPercent = findViewById<NumberPicker>(R.id.pickerPercent)
@@ -51,14 +53,14 @@ class MainActivity : AppCompatActivity() {
             override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
                 try {
                     people = p2
-                    textTip.setText(format.format(getTip(java.lang.Double.parseDouble(check), percent)))
+                    textTip.setText(format.format(getTotalBill(java.lang.Double.parseDouble(check), percent)))
+                    textTotalBill.setText(format.format(getTip(java.lang.Double.parseDouble(check), percent)))
                     textPerPerson.setText(format.format(getPricePerPerson(java.lang.Double.parseDouble(check), percent, people)))
                     cleanUp()
                 } catch (e: Exception) {
 
                 }
             }
-
         })
 
         pickerPercent.setOnValueChangedListener(object: NumberPicker.OnValueChangeListener {
@@ -66,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                 errorChecker() //check if there are errors
                 try {
                     percent = p2.toDouble()
+                    textTotalBill.setText(format.format(getTotalBill(java.lang.Double.parseDouble(check), percent)))
                     textTip.setText(format.format(getTip(java.lang.Double.parseDouble(check), percent)))
                     textPerPerson.setText(format.format(getPricePerPerson(java.lang.Double.parseDouble(check), percent, people)))
                     cleanUp()
@@ -86,11 +89,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                errorChecker()
-                check = getString(p0.toString())
-                textTip.setText(format.format(getTip(java.lang.Double.parseDouble(check), percent)))
-                textPerPerson.setText(format.format(getPricePerPerson(java.lang.Double.parseDouble(check), percent, people)))
-                cleanUp()
+                try {
+                    errorChecker()
+                    check = getString(p0.toString())
+                    textTip.setText(format.format(getTip(java.lang.Double.parseDouble(check), percent)))
+                    textPerPerson.setText(format.format(getPricePerPerson(java.lang.Double.parseDouble(check), percent, people)))
+                    textTotalBill.setText(format.format(getTotalBill(java.lang.Double.parseDouble(check), percent)))
+                    cleanUp()
+                } catch (e: Exception) {
+
+                }
             }
         })
         errorChecker()
@@ -117,6 +125,10 @@ class MainActivity : AppCompatActivity() {
         val builder = StringBuilder(sequence.length)
         builder.append(sequence)
         return builder.toString()
+    }
+
+    fun getTotalBill(checkTotal: Double, percent: Double): Double {
+        return checkTotal + getTip(checkTotal, percent);
     }
 
     fun cleanUp() {
