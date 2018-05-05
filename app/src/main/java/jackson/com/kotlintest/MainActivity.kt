@@ -53,8 +53,8 @@ class MainActivity : AppCompatActivity() {
             override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
                 try {
                     people = p2
-                    textTip.setText(format.format(getTotalBill(java.lang.Double.parseDouble(check), percent)))
-                    textTotalBill.setText(format.format(getTip(java.lang.Double.parseDouble(check), percent)))
+                    textTip.setText(format.format(getTip(java.lang.Double.parseDouble(check), percent)))
+                    textTotalBill.setText(format.format(getTotalBill(java.lang.Double.parseDouble(check), percent)) + check)
                     textPerPerson.setText(format.format(getPricePerPerson(java.lang.Double.parseDouble(check), percent, people)))
                     cleanUp()
                 } catch (e: Exception) {
